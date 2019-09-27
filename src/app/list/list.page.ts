@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+// import { NavController } from '@ionic/angular';
+import { Router } from '@angular/router';
+import { UserService } from '../services/user.service';
+import { ExpenseService } from '../services/expense.service';
 
 @Component({
   selector: 'app-list',
@@ -6,34 +10,36 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['list.page.scss']
 })
 export class ListPage implements OnInit {
-  private selectedItem: any;
-  private icons = [
-    'flask',
-    'wifi',
-    'beer',
-    'football',
-    'basketball',
-    'paper-plane',
-    'american-football',
-    'boat',
-    'bluetooth',
-    'build'
-  ];
-  public items: Array<{ title: string; note: string; icon: string }> = [];
-  constructor() {
-    for (let i = 1; i < 11; i++) {
-      this.items.push({
-        title: 'Item ' + i,
-        note: 'This is item #' + i,
-        icon: this.icons[Math.floor(Math.random() * this.icons.length)]
-      });
+  items = this.expenseService.expenses;
+
+  constructor( private userService: UserService,
+               private expenseService: ExpenseService,
+               private router: Router ) {
+  }
+
+  ngAfterViewInit() {
+    if (!this.userService.signedIn) {
+      console.log('not signed in');
+      this.showLogin();
     }
   }
 
   ngOnInit() {
+
   }
-  // add back when alpha.4 is out
-  // navigate(item) {
-  //   this.router.navigate(['/list', JSON.stringify(item)]);
-  // }
+
+  showLogin() {
+    this.router.navigateByUrl('/login');
+
+  }
+
+  onSelect(expense) {
+    this.expenseService.selectedExpense = expense;
+    this.router.navigateByUrl('/expense-detail');
+  }
+
+  newExpense() {
+    this.router.navigateByUrl('/expense-new');
+  }
+
 }

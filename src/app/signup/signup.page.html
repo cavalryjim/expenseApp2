@@ -1,0 +1,35 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Register</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="content-background" no-bounce>
+
+  <form (submit)="doSignup()" class="form-div">
+    <ion-list>
+      <ion-item>
+        <ion-label stacked>EMAIL ADDRESS</ion-label>
+        <ion-input type="email" name="email"> </ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label stacked>PASSWORD</ion-label>
+        <ion-input [type]="password_type" name="password1"> </ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label stacked>CONFIRM</ion-label>
+        <ion-input [type]="password_type" name="password2"> </ion-input>
+      </ion-item>
+
+      <ion-item>
+        <button block >SIGN UP</button>
+      </ion-item>
+    </ion-list>
+
+    <div class="login-div" (click)="gotoLogin()">
+      Already have an account? Tap here to login.
+    </div>
+  </form>
+</ion-content>

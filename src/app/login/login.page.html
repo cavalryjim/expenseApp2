@@ -9,22 +9,18 @@
   <form (submit)="doLogin()" class="form-div">
     <ion-list>
       <ion-item>
-        <ion-label stacked>EMAIL ADDRESS</ion-label>
-        <ion-input type="email" name="email"> </ion-input>
+        <ion-label position="stacked">Email</ion-label>
+        <ion-input type="email" [(ngModel)]="account.email" name="email"> </ion-input>
       </ion-item>
 
       <ion-item>
-        <ion-label stacked>PASSWORD</ion-label>
-        <ion-input [type]="password_type" name="password"> </ion-input>
+        <ion-label position="stacked">Password</ion-label>
+        <ion-input type="password" [(ngModel)]="account.password" name="password"> </ion-input>
       </ion-item>
 
-      <ion-item>
-        <button block class="login-btn">LOG IN</button>
-      </ion-item>
+      <ion-button expand="full" type="submit">Submit</ion-button>
     </ion-list>
 
-    <div class="login-div" (click)="gotoSignup()">
-      Need an account? Tap here to signup.
-    </div>
   </form>
+  <div class="login-div" (click)="gotoSignup()">Need an account? Tap here to signup.</div>
 </ion-content>

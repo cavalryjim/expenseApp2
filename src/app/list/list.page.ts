@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-// import { NavController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { UserService } from '../services/user.service';
 import { ExpenseService } from '../services/expense.service';
@@ -17,20 +16,12 @@ export class ListPage implements OnInit {
                private router: Router ) {
   }
 
-  ngAfterViewInit() {
-    if (!this.userService.signedIn) {
-      console.log('not signed in');
-      this.showLogin();
-    }
-  }
-
   ngOnInit() {
 
   }
 
   showLogin() {
     this.router.navigateByUrl('/login');
-
   }
 
   onSelect(expense) {
